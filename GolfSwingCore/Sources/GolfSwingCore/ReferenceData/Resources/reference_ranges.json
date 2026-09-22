@@ -1,0 +1,16 @@
+{
+  "clubCategory": "fullSwing",
+  "sourceNotes": "v1 placeholder ranges assembled from published golf-instruction/biomechanics figures: TPI tour-average X-factor (~42 deg) and shoulder/hip turn norms (mytpi.com), Jim McLean's long-vs-short-hitter X-factor comparison (24 deg vs 38 deg), John Novosel's Tour Tempo 3:1 backswing:downswing research, and commonly cited 35-45 deg address spine-angle guidance. These are instructional-literature approximations for a v1 scaffold, not derived from proprietary lab or GolfDB data, and should be reviewed against primary biomechanics research before shipping.",
+  "metrics": {
+    "tempoRatio": { "min": 2.5, "max": 4.0, "ideal": 3.0 },
+    "xFactorAtTop": { "min": 24, "max": 50, "ideal": 40 },
+    "shoulderRotationAtTop": { "min": 85, "max": 100, "ideal": 90 },
+    "hipRotationAtTop": { "min": 40, "max": 55, "ideal": 45 },
+    "spineAngleDeviation": { "min": 0, "max": 8, "ideal": 2 }
+  },
+  "spineAngleAddressByHeightBand": {
+    "short": { "min": 30, "max": 38, "ideal": 34 },
+    "average": { "min": 33, "max": 41, "ideal": 37 },
+    "tall": { "min": 36, "max": 44, "ideal": 40 }
+  }
+}

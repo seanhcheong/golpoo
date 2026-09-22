@@ -1,0 +1,30 @@
+name: GolfSwingAnalysis
+options:
+  bundleIdPrefix: com.golfswinganalysis
+  deploymentTarget:
+    iOS: "17.0"
+
+packages:
+  GolfSwingCore:
+    path: GolfSwingCore
+
+targets:
+  GolfSwingAnalysis:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: GolfSwingAnalysis
+        excludes:
+          - "Info.plist"
+    info:
+      path: GolfSwingAnalysis/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.golfswinganalysis.app
+        SWIFT_VERSION: "5.9"
+        TARGETED_DEVICE_FAMILY: "1"
+        INFOPLIST_KEY_UILaunchScreen_Generation: NO
+    dependencies:
+      - package: GolfSwingCore
+        product: GolfSwingCore
