@@ -22,7 +22,16 @@ public enum ReferenceRangeProviderError: Error {
 public struct ReferenceRangeProvider {
     private let config: ReferenceRangeConfig
 
-    public init(bundle: Bundle = .module) throws {
+    public init() throws {
+        // `Bundle.module` is SwiftPM's generated accessor, which is
+        // `internal` — it can't be used as a default value on a `public`
+        // initializer (the default-argument thunk must be at least as
+        // accessible as the initializer itself), but referencing it here,
+        // inside the body, is fine.
+        try self.init(bundle: .module)
+    }
+
+    init(bundle: Bundle) throws {
         guard let url = bundle.url(forResource: "reference_ranges", withExtension: "json") else {
             throw ReferenceRangeProviderError.resourceNotFound
         }
