@@ -15,16 +15,21 @@ targets:
     deploymentTarget: "17.0"
     sources:
       - path: GolfSwingAnalysis
-        excludes:
-          - "Info.plist"
-    info:
-      path: GolfSwingAnalysis/Info.plist
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.golfswinganalysis.app
         SWIFT_VERSION: "5.9"
         TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_UILaunchScreen_Generation: NO
+        INFOPLIST_KEY_CFBundleDisplayName: Golf Swing Analysis
+        # Xcode synthesizes Info.plist from these INFOPLIST_KEY_* build
+        # settings (GENERATE_INFOPLIST_FILE: YES) rather than from a
+        # physical Info.plist file — a custom Info.plist pointed to via
+        # `info.path` was silently ignored, which is why the camera
+        # permission crashed at runtime despite the key being in that
+        # file. Keep every Info.plist key as a build setting here instead.
+        INFOPLIST_KEY_NSCameraUsageDescription: "Golf Swing Analysis needs camera access to record your swing for on-device pose analysis. Video is never uploaded."
     dependencies:
       - package: GolfSwingCore
         product: GolfSwingCore
