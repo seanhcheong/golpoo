@@ -98,6 +98,19 @@ status" below before relying on it.
    ```
    pod install
    ```
+   **Ordering matters and is easy to get bitten by:** `xcodegen generate`
+   fully rewrites `GolfSwingAnalysis.xcodeproj` from `project.yml`, which
+   has no knowledge of CocoaPods — so if you ever edit `project.yml` and
+   re-run `xcodegen generate` *after* `pod install` has already run, it
+   silently erases the settings CocoaPods added to the `GolfSwingAnalysis`
+   target (framework search paths, the embed-frameworks build step). The
+   separate `Pods.xcodeproj` is untouched, so it still shows up fine in
+   Xcode's Project Navigator, which makes this confusing to diagnose — the
+   symptom is `No such module 'MediaPipeTasksVision'` even though the
+   framework is right there on disk under `Pods/`. **Rule: `pod install`
+   must always be the last of the two commands run.** If you rerun
+   `xcodegen generate` for any reason, immediately run `pod install` again
+   afterward.
 4. Download a MediaPipe **Pose Landmarker** `.task` model (e.g.
    `pose_landmarker_full.task`) from Google's MediaPipe model zoo and add
    it to the `GolfSwingAnalysis` target as a bundled resource. The binary
