@@ -6,7 +6,11 @@ import PackageDescription
 // AVFoundation dependency so the same logic can be ported to Android later.
 let package = Package(
     name: "GolfSwingCore",
-    platforms: [.iOS(.v16)],
+    // macOS is listed alongside iOS purely so `swift test` can run
+    // directly from the command line on a Mac (no simulator, no Xcode
+    // project needed) — this package has no UIKit/AVFoundation/MediaPipe
+    // dependency, so it builds identically on either platform.
+    platforms: [.iOS(.v16), .macOS(.v13)],
     products: [
         .library(name: "GolfSwingCore", targets: ["GolfSwingCore"])
     ],
